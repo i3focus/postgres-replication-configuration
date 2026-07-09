@@ -77,7 +77,7 @@ sequenceDiagram
     SLOT-->>SUB: Stream row-level changes via walsender
     SUB->>SUB: Apply worker applies changes
     SUB-->>SLOT: Confirm flush LSN
-    Note over SLOT: Slot advances; WAL segments released
+    Note over SLOT: Slot advances - WAL segments released
 ```
 
 ---
