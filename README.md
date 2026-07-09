@@ -297,9 +297,6 @@ FROM pg_stat_replication;
 SELECT pid, received_lsn, last_msg_receipt_time
 FROM pg_stat_subscription;
 ```
-
-![Logs monitoring](./images/real_time_replication.png)
-
 ---
 
 ## Known Limitations
