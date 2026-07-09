@@ -65,7 +65,6 @@ graph LR
 
 ```mermaid
 sequenceDiagram
-    autonumber
     participant APP as Application
     participant PUB as Publisher (PUB_HOST)
     participant WAL as WAL / pgoutput
