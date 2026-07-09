@@ -270,6 +270,13 @@ CREATE TABLE orders (
 CREATE SUBSCRIPTION my_sub
   CONNECTION 'host=PUB_HOST port=5432 dbname=your_db user=replicator password=${REPLICATOR_PASSWORD}'
   PUBLICATION my_pub;
+
+  -- CREATE SUBSCRIPTION subscriber_replication
+  -- CONNECTION 'host=pg_publisher port=5432 dbname=publisher_db user=replicator password=${REPLICATOR_PASSWORD}'
+  -- PUBLICATION publisher_db;
+
+-- 3. Testing the replication
+INSERT INTO orders (customer_id, total, status, created_at) VALUES (1, 199.99, 'pending', now());
 ```
 
 ---
@@ -290,6 +297,8 @@ FROM pg_stat_replication;
 SELECT pid, received_lsn, last_msg_receipt_time
 FROM pg_stat_subscription;
 ```
+
+![Logs monitoring](./images/real_time_replication.png)
 
 ---
 

@@ -1,1 +1,23 @@
 
+services:
+  pg_publisher:
+    image: postgres:16
+    container_name: pg_publisher
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: publisher_db_user
+      POSTGRES_PASSWORD: publisher_db_password
+      POSTGRES_DB: publisher_db
+      ALLOW_IP_RANGE: 0.0.0.0/0
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg_publisher_data:/var/lib/postgresql/data
+    command: >
+      postgres
+        -c wal_level=logical
+        -c max_replication_slots=10
+        -c max_wal_senders=10
+
+volumes:
+  pg_publisher_data:

@@ -1,1 +1,17 @@
 
+services:
+  pg_subscriber:
+    image: postgres:16
+    container_name: pg_subscriber
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: subscriber_db_user
+      POSTGRES_PASSWORD: subscriber_db_password
+      POSTGRES_DB: subscriber_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - pg_subscriber_data:/var/lib/postgresql/data
+
+volumes:
+  pg_subscriber_data:
